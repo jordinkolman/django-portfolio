@@ -1,5 +1,4 @@
 <html lang="en">
-  {% load staticfiles %}
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -53,8 +52,8 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
                 <a class="nav-link" href="#">Twitter</a>
+                <a class="nav-link active" href="/blog/">Blog</a>
                 <a class="nav-link" href="{% static 'Jordin-Kolman.pdf' %"}>Resume</a>
-                <a class="nav-link" href="/blog/">Blog</a>
                 <a class="nav-link" href="#">Contact</a>
 
               </div>
@@ -64,38 +63,32 @@
 
 <main role="main">
 
-  <section class="jumbotron text-center">
-    <div class="container">
-      
-      <h1>Hi, I'm Jordin Kolman</h1>
-      <p class="lead text-muted">I am a Full Stack Web Developer, using React and Python to build beautiful, responsive websites for small businesses</p>
-      <p>
-        <img src="{% static 'Portfolio-Profile-Pic.jpg' %}" height=300 />
+    <div class='container'>
+        <h1 class='text-center pt-3'>Welcome to Jordin's Blog!</h1>
         <br />
-        <a href="mailto:jordinkolman@gmail.com"class="btn btn-primary my-2">Email Me</a>
-      </p>
-      
+        <br />
+        <h2>Latest Posts</h2>
+        <hr />
+  
+
+        <div>
+
+            {% for blog in blogs.all %}
+                        
+                <a href=""><h3>{{blog.title}}</h3></a>  
+                <h6>{{blog.pub_date_pretty}}</h6>
+                <br />
+                <img class='img-fluid' src='{{blog.image.url}}' height=200 width=200/>
+                <br />
+                <p >{{blog.summary}}</p>
+
+            {% endfor %}
+
+        </div>
+
     </div>
-  </section>
 
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-        {% for job in jobs.all %}
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <img class="card-img-top" src="{{ job.image.url }}" />
-                    <div class="card-body">
-                        <p class="card-text">{{job.summary}}</p>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-
+    
 </main>
 
 <footer class="text-muted">
